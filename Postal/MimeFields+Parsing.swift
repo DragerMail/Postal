@@ -61,7 +61,7 @@ extension mailimap_body_fields {
             mimeFields.contentEncoding = encoding.parse
         }
         
-        if let mimeId = bd_id?.pointee {
+        if let _ = bd_id?.pointee {
             var curToken: size_t = 0
             var contentId: UnsafeMutablePointer<CChar>? = nil
             let result = mailimf_msg_id_parse(bd_id, Int(strlen(bd_id)), &curToken, &contentId)

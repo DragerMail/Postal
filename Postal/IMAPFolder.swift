@@ -78,7 +78,7 @@ public struct FolderFlag: OptionSet {
     public let rawValue: Int
     public init(rawValue: Int) { self.rawValue = rawValue }
     
-    public static let None        = FolderFlag(rawValue: 0)
+    public static let None        = FolderFlag([])
     public static let Marked      = FolderFlag(rawValue: 1 << 0)
     public static let Unmarked    = FolderFlag(rawValue: 1 << 1)
     public static let NoSelect    = FolderFlag(rawValue: 1 << 2)

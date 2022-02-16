@@ -70,7 +70,7 @@ extension mailimap_envelope {
     }
     
     fileprivate func extractInReplyTo() -> [String] {
-        guard let envInReplyTo = env_in_reply_to?.pointee else { return [] }
+        guard let _ = env_in_reply_to?.pointee else { return [] }
         
         var curToken: Int = 0
         var msgIdList: UnsafeMutablePointer<clist>? = nil
@@ -90,7 +90,7 @@ extension mailimap_envelope {
     }
     
     fileprivate func extractMessageId() -> String? {
-        guard let envMessageId = env_message_id?.pointee else { return nil }
+        guard let _ = env_message_id?.pointee else { return nil }
         
         var curToken: Int = 0
         var msgId: UnsafeMutablePointer<CChar>? = nil

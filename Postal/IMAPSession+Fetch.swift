@@ -30,7 +30,7 @@ public struct FetchFlag: OptionSet {
     
     public init(rawValue: Int) { self.rawValue = rawValue }
     
-    public static let uid              = FetchFlag(rawValue: 0) // This is the default and it's always fetched
+    public static let uid              = FetchFlag([]) // This is the default and it's always fetched
     public static let flags            = FetchFlag(rawValue: 1 << 0)
     public static let headers          = FetchFlag(rawValue: 1 << 1)
     public static let structure        = FetchFlag(rawValue: 1 << 2)
@@ -163,7 +163,7 @@ extension IMAPSession {
     }
     
     func fetchMessages(_ folder: String, set: IMAPIndexes, flags: FetchFlag, extraHeaders: Set<String> = [], handler: @escaping (FetchResult) -> Void) throws {
-        let info = try select(folder)
+        _ = try select(folder)
         
         var context = FetchContext(flags: flags, handler: handler)
         mailimap_set_msg_att_handler(imap, { message, context in
@@ -214,7 +214,7 @@ extension IMAPSession {
     
     // fetch a set of attachments from an email with given uid
     func fetchParts(_ folder: String, uid: UInt, partId: String, handler: @escaping (MailData) -> Void) throws {
-        let info = try select(folder)
+        _ = try select(folder)
         
         // create body peek sections for part ids
         let list = partId.unreleasedPartIdList
